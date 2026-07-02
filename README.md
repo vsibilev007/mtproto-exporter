@@ -86,7 +86,6 @@ Dashboards → Import → Upload JSON → `grafana_dashboard.json`
 | `mtpr_synfix_conntrack_time_wait` | TIME_WAIT соединений |
 | `mtpr_synfix_conntrack_other` | другие состояния |
 | `mtpr_synfix_active_ips` | всего уникальных IP |
-| `mtpr_synfix_non_ios_active_ips` | уникальных non-iOS IP |
 | `mtpr_synfix_ip_conntrack_packets{ip="..."}` | пакеты по IP |
 | `mtpr_synfix_ip_conntrack_bytes{ip="..."}` | байты по IP |
 | `mtpr_synfix_ip_conntrack_state{ip="...", state="..."}` | состояние IP |

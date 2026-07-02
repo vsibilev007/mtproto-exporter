@@ -110,10 +110,6 @@ active_ips = Gauge(
     'mtpr_synfix_active_ips',
     'Total unique source IPs on proxy port'
 )
-non_ios_active_ips = Gauge(
-    'mtpr_synfix_non_ios_active_ips',
-    'Unique non-iOS IPs currently in conntrack'
-)
 
 ip_conntrack_pkts = Gauge(
     'mtpr_synfix_ip_conntrack_packets',
@@ -340,7 +336,6 @@ def collect(port=443, debug=False):
 
     all_ips = set(per_ip.keys())
     active_ips.set(len(all_ips))
-    non_ios_active_ips.set(len(all_ips))
 
     ip_conntrack_pkts.clear()
     ip_conntrack_bytes.clear()

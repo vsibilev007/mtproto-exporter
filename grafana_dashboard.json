@@ -1134,28 +1134,6 @@
                   },
                   "refId": "C"
                 }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_non_ios_active_ips",
-                      "instant": true,
-                      "legendFormat": "non-iOS IP",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "D"
-                }
               }
             ],
             "queryOptions": {},
