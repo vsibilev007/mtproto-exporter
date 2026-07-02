@@ -21,7 +21,7 @@
     }
   ],
   "cursorSync": "Off",
-  "description": "Мониторинг SYN-трафика: hashlimit, блокировки, iOS/non-iOS, алерты.",
+  "description": "Monitoring SYN traffic: hashlimit, blocks, iOS/non-iOS classification, alerts.",
   "editable": true,
   "elements": {
     "panel-5": {
@@ -237,7 +237,7 @@
       "spec": {
         "id": 6,
         "title": "Доля REJECT от всех SYN",
-        "description": "Рост = атака",
+        "description": "Growth = attack",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -370,7 +370,7 @@
       "spec": {
         "id": 7,
         "title": "Доля non-iOS трафика",
-        "description": "Предрассчитана",
+        "description": "Pre-calculated",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -490,7 +490,7 @@
       "spec": {
         "id": 8,
         "title": "Conntrack состояния",
-        "description": "TCP-сессии по состояниям",
+        "description": "TCP sessions by state",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -698,7 +698,7 @@
       "spec": {
         "id": 9,
         "title": "Топ-10 IP по пакетам",
-        "description": "Топ-10 IP по пакетам (текущий снэпшот).",
+        "description": "Top-10 IPs by packets (current snapshot).",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -822,7 +822,7 @@
       "spec": {
         "id": 10,
         "title": "Топ-10 IP по байтам",
-        "description": "Топ-10 IP по объёму трафика (текущий снэпшот).",
+        "description": "Top-10 IPs by traffic volume (current snapshot).",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -946,7 +946,7 @@
       "spec": {
         "id": 11,
         "title": "Состояния conntrack по IP",
-        "description": "Состояние conntrack по IP",
+        "description": "Conntrack state per IP",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1062,8 +1062,8 @@
       "kind": "Panel",
       "spec": {
         "id": 12,
-        "title": "Состояние системы",
-        "description": "Цепочка, SSH bypass, IP",
+        "title": "System Status",
+        "description": "Chain status, SSH bypass, active IPs",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1323,7 +1323,7 @@
       "spec": {
         "id": 13,
         "title": "Bandwidth — байт/сек",
-        "description": "Трафик по категориям (stacked)",
+        "description": "Traffic by category (stacked)",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1531,7 +1531,7 @@
       "spec": {
         "id": 14,
         "title": "Hashlimit utilization",
-        "description": "Доля non-iOS IP упирающихся в лимит 54/мин",
+        "description": "Share of non-iOS IPs hitting 54/min limit",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1659,7 +1659,7 @@
       "spec": {
         "id": 15,
         "title": "Абсолютные счётчики",
-        "description": "Кумулятивные за период",
+        "description": "Cumulative over period",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1867,7 +1867,7 @@
       "spec": {
         "id": 16,
         "title": "REJECT Rate — Alert",
-        "description": "Красный = атака",
+        "description": "Red = attack",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -1957,7 +1957,7 @@
       "spec": {
         "id": 17,
         "title": "Conntrack Total",
-        "description": "Всего соединений на порту",
+        "description": "Total connections on port",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -2047,7 +2047,7 @@
       "spec": {
         "id": 18,
         "title": "iOS vs non-iOS — Ratio",
-        "description": "Соотношение iOS/non-iOS",
+        "description": "iOS / non-iOS ratio",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -2164,7 +2164,7 @@
         {
           "kind": "RowsLayoutRow",
           "spec": {
-            "title": "Система и Alert'ы",
+            "title": "System & Alerts",
             "collapse": false,
             "hideHeader": true,
             "fillScreen": true,
@@ -2219,7 +2219,7 @@
         {
           "kind": "RowsLayoutRow",
           "spec": {
-            "title": "Трафик",
+            "title": "Traffic",
             "collapse": false,
             "hideHeader": false,
             "fillScreen": true,
@@ -2261,7 +2261,7 @@
         {
           "kind": "RowsLayoutRow",
           "spec": {
-            "title": "Анализ трафика",
+            "title": "Traffic Analysis",
             "collapse": false,
             "hideHeader": false,
             "fillScreen": false,
@@ -2316,7 +2316,7 @@
         {
           "kind": "RowsLayoutRow",
           "spec": {
-            "title": "Счётчики и Conntrack",
+            "title": "Counters & Conntrack",
             "collapse": false,
             "hideHeader": false,
             "fillScreen": false,
@@ -2358,7 +2358,7 @@
         {
           "kind": "RowsLayoutRow",
           "spec": {
-            "title": "Топ IP",
+            "title": "Top IPs",
             "collapse": false,
             "hideHeader": false,
             "fillScreen": false,
