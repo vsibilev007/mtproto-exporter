@@ -28,8 +28,8 @@
       "kind": "Panel",
       "spec": {
         "id": 5,
-        "title": "iOS / non-iOS / REJECT — пакеты/с",
-        "description": "SYN скорость по путям",
+        "title": "iOS / non-iOS / REJECT — packets/sec",
+        "description": "SYN rate by path",
         "links": [],
         "data": {
           "kind": "QueryGroup",
@@ -236,7 +236,7 @@
       "kind": "Panel",
       "spec": {
         "id": 6,
-        "title": "Доля REJECT от всех SYN",
+        "title": "REJECT share of all SYN",
         "description": "Growth = attack",
         "links": [],
         "data": {
@@ -369,7 +369,7 @@
       "kind": "Panel",
       "spec": {
         "id": 7,
-        "title": "Доля non-iOS трафика",
+        "title": "non-iOS traffic share",
         "description": "Pre-calculated",
         "links": [],
         "data": {
@@ -489,7 +489,7 @@
       "kind": "Panel",
       "spec": {
         "id": 8,
-        "title": "Conntrack состояния",
+        "title": "Conntrack states",
         "description": "TCP sessions by state",
         "links": [],
         "data": {
@@ -697,7 +697,7 @@
       "kind": "Panel",
       "spec": {
         "id": 9,
-        "title": "Топ-10 IP по пакетам",
+        "title": "Top-10 IPs by packets",
         "description": "Top-10 IPs by packets (current snapshot).",
         "links": [],
         "data": {
@@ -742,7 +742,7 @@
                       "server": true
                     },
                     "renameByName": {
-                      "Value": "Пакеты",
+                      "Value": "Packets",
                       "ip": "IP"
                     }
                   }
@@ -821,7 +821,7 @@
       "kind": "Panel",
       "spec": {
         "id": 10,
-        "title": "Топ-10 IP по байтам",
+        "title": "Top-10 IPs by bytes",
         "description": "Top-10 IPs by traffic volume (current snapshot).",
         "links": [],
         "data": {
@@ -866,7 +866,7 @@
                       "server": true
                     },
                     "renameByName": {
-                      "Value": "Байты",
+                      "Value": "Bytes",
                       "ip": "IP"
                     }
                   }
@@ -945,7 +945,7 @@
       "kind": "Panel",
       "spec": {
         "id": 11,
-        "title": "Состояния conntrack по IP",
+        "title": "Conntrack state per IP",
         "description": "Conntrack state per IP",
         "links": [],
         "data": {
@@ -1126,7 +1126,7 @@
                     "spec": {
                       "expr": "mtpr_synfix_active_ips",
                       "instant": true,
-                      "legendFormat": "Всего IP",
+                      "legendFormat": "Total IPs",
                       "queryType": "instant",
                       "range": false
                     },
@@ -1255,7 +1255,7 @@
                 {
                   "matcher": {
                     "id": "byName",
-                    "options": "Всего IP"
+                    "options": "Total IPs"
                   },
                   "properties": [
                     {
@@ -1322,7 +1322,7 @@
       "kind": "Panel",
       "spec": {
         "id": 13,
-        "title": "Bandwidth — байт/сек",
+        "title": "Bandwidth — bytes/sec",
         "description": "Traffic by category (stacked)",
         "links": [],
         "data": {
@@ -1658,7 +1658,7 @@
       "kind": "Panel",
       "spec": {
         "id": 15,
-        "title": "Абсолютные счётчики",
+        "title": "Absolute counters",
         "description": "Cumulative over period",
         "links": [],
         "data": {
