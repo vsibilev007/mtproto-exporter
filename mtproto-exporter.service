@@ -1,0 +1,15 @@
+[Unit]
+Description=MTProto MEKO Prometheus Exporter
+After=network.target
+
+[Service]
+Type=simple
+Environment=MTProto_DEBUG=0
+ExecStart=/bin/bash -c 'if [ \"$MTProto_DEBUG\" = \"1\" ]; then exec /usr/bin/python3 /opt/mtproto-exporter/mtproto_exporter.py 443 9095 --debug; else exec /usr/bin/python3 /opt/mtproto-exporter/mtproto_exporter.py 443 9095; fi'
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
