@@ -1,1418 +1,719 @@
 {
-  "annotations": [
-    {
-      "kind": "AnnotationQuery",
-      "spec": {
-        "builtIn": true,
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "query": {
-          "datasource": {
-            "name": "-- Grafana --"
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "vsqvwxg",
+    "namespace": "stacks-1080290",
+    "uid": "2b426111-81ef-4f75-a139-4a8f94ae7afc",
+    "resourceVersion": "2072609806039908978",
+    "generation": 3,
+    "creationTimestamp": "2026-07-02T07:38:50Z",
+    "labels": {
+      "grafana.app/deprecatedInternalID": "929947929985024"
+    },
+    "annotations": {
+      "grafana.app/createdBy": "user:be2ixds9tmdq8a",
+      "grafana.app/folder": "",
+      "grafana.app/saved-from-ui": "Grafana Cloud",
+      "grafana.app/updatedBy": "user:be2ixds9tmdq8a",
+      "grafana.app/updatedTimestamp": "2026-07-02T09:14:19Z"
+    }
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "datasource": {
+              "name": "-- Grafana --"
+            },
+            "spec": {}
           },
-          "group": "grafana",
-          "kind": "DataQuery",
-          "spec": {},
-          "version": "v0"
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true
         }
       }
-    }
-  ],
-  "cursorSync": "Off",
-  "description": "Мониторинг SYN-трафика: hashlimit, блокировки, iOS/non-iOS, алерты.",
-  "editable": true,
-  "elements": {
-    "panel-12": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_chain_exists",
-                      "instant": true,
-                      "legendFormat": "Chain",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_ssh_bypass_active",
-                      "instant": true,
-                      "legendFormat": "SSH Bypass",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_active_ips",
-                      "instant": true,
-                      "legendFormat": "Всего IP",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "C"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_non_ios_active_ips",
-                      "instant": true,
-                      "legendFormat": "non-iOS IP",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "D"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Цепочка, SSH bypass, IP",
-        "id": 12,
-        "links": [],
-        "title": "Состояние системы",
-        "vizConfig": {
-          "group": "stat",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": [
+    ],
+    "cursorSync": "Off",
+    "description": "Мониторинг SYN-трафика: hashlimit, блокировки, iOS/non-iOS, алерты.",
+    "editable": true,
+    "elements": {
+      "panel-10": {
+        "kind": "Panel",
+        "spec": {
+          "id": 10,
+          "title": "Топ-10 IP по байтам",
+          "description": "Топ-10 IP по объёму трафика (текущий снэпшот).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "Chain"
-                  },
-                  "properties": [
-                    {
-                      "id": "mappings",
-                      "value": [
-                        {
-                          "options": {
-                            "0": {
-                              "color": "red",
-                              "text": "DEAD"
-                            },
-                            "1": {
-                              "color": "green",
-                              "text": "OK"
-                            }
-                          },
-                          "type": "value"
-                        }
-                      ]
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "topk(10, mtpr_synfix_ip_conntrack_bytes)",
+                        "instant": true,
+                        "legendFormat": "{{ip}}",
+                        "queryType": "instant",
+                        "range": false
+                      }
                     },
-                    {
-                      "id": "thresholds",
-                      "value": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "red",
-                            "value": 0
-                          },
-                          {
-                            "color": "green",
-                            "value": 1
-                          }
-                        ]
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {
+                        "Time": true,
+                        "__name__": true,
+                        "instance": true,
+                        "job": true,
+                        "server": true
+                      },
+                      "renameByName": {
+                        "Value": "Байты",
+                        "ip": "IP"
                       }
                     }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "SSH Bypass"
-                  },
-                  "properties": [
-                    {
-                      "id": "mappings",
-                      "value": [
-                        {
-                          "options": {
-                            "0": {
-                              "color": "green",
-                              "text": "OFF"
-                            },
-                            "1": {
-                              "color": "orange",
-                              "text": "ON"
-                            }
-                          },
-                          "type": "value"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "Всего IP"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "blue",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "non-iOS IP"
-                  },
-                  "properties": [
-                    {
-                      "id": "thresholds",
-                      "value": {
-                        "mode": "absolute",
-                        "steps": [
-                          {
-                            "color": "green",
-                            "value": 0
-                          },
-                          {
-                            "color": "yellow",
-                            "value": 50
-                          },
-                          {
-                            "color": "red",
-                            "value": 200
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                  }
                 }
-              ]
-            },
-            "options": {
-              "colorMode": "background",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showPercentChange": false,
-              "textMode": "auto",
-              "wideLayout": false
+              ],
+              "queryOptions": {}
             }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-5": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_ios_packets",
-                      "instant": false,
-                      "legendFormat": "iOS (mark 0x400)",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_limit_packets",
-                      "instant": false,
-                      "legendFormat": "non-iOS (limit)",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_reject_packets",
-                      "instant": false,
-                      "legendFormat": "REJECT",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "C"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "SYN скорость по путям",
-        "id": 5,
-        "links": [],
-        "title": "iOS / non-iOS / REJECT — пакеты/с",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "bargauge",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "displayMode": "basic",
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": false
                 },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
+                "maxVizHeight": 300,
+                "minVizHeight": 15,
+                "minVizWidth": 15,
+                "namePlacement": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": true,
+                "showThresholdMarkers": true,
+                "showUnfilled": true,
+                "sizing": "auto",
+                "valueMode": "color"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "decbytes",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 1000000,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 10000000,
+                        "color": "red"
+                      }
+                    ]
                   },
-                  "thresholdsStyle": {
-                    "mode": "off"
+                  "color": {
+                    "mode": "thresholds"
                   }
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "pps"
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "REJECT"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "red",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "iOS (mark 0x400)"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "green",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "non-iOS (limit)"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "orange",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
+                "overrides": []
               }
             }
           }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-13": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
+        }
+      },
+      "panel-11": {
+        "kind": "Panel",
+        "spec": {
+          "id": 11,
+          "title": "Состояния conntrack по IP",
+          "description": "Состояние conntrack по IP",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_ip_conntrack_state",
+                        "instant": true,
+                        "legendFormat": "",
+                        "queryType": "instant",
+                        "range": false
+                      }
                     },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_ios_bytes",
-                      "instant": false,
-                      "legendFormat": "iOS",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
+                    "refId": "A",
+                    "hidden": false
+                  }
                 }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_limit_bytes",
-                      "instant": false,
-                      "legendFormat": "non-iOS",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_reject_bytes",
-                      "instant": false,
-                      "legendFormat": "REJECT",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "C"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Трафик по категориям (stacked)",
-        "id": 13,
-        "links": [],
-        "title": "Bandwidth — байт/сек",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "labelsToFields",
+                  "spec": {
+                    "options": {
+                      "mode": "columns"
+                    }
                   }
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "Bps"
-              },
-              "overrides": [
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "REJECT"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "red",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "iOS"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "green",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "non-iOS"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "orange",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-6": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_reject_packets / (mtpr_synfix_rate_ios_packets + mtpr_synfix_rate_limit_packets + mtpr_synfix_rate_reject_packets) or vector(0)",
-                      "instant": false,
-                      "legendFormat": "REJECT %",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Рост = атака",
-        "id": 6,
-        "links": [],
-        "title": "Доля REJECT от всех SYN",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
+                  "kind": "Transformation",
+                  "group": "merge",
+                  "spec": {
+                    "options": {}
                   }
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "percentunit",
-                "max": 1,
-                "min": 0
-              },
-              "overrides": []
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-7": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_non_ios_pct",
-                      "instant": false,
-                      "legendFormat": "non-iOS %",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Предрассчитана",
-        "id": 7,
-        "links": [],
-        "title": "Доля non-iOS трафика",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "percent",
-                "max": 100,
-                "min": 0
-              },
-              "overrides": []
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-14": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_reject_packets / (mtpr_synfix_rate_limit_packets + mtpr_synfix_rate_reject_packets) or vector(0)",
-                      "instant": false,
-                      "legendFormat": "Utilization %",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Доля non-iOS IP упирающихся в лимит 54/мин",
-        "id": 14,
-        "links": [],
-        "title": "Hashlimit utilization",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "line+area"
-                  }
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 0.3
-                    },
-                    {
-                      "color": "red",
-                      "value": 0.7
-                    }
-                  ]
-                },
-                "unit": "percentunit",
-                "max": 1,
-                "min": 0
-              },
-              "overrides": []
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-15": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_ios_accept_packets_total",
-                      "instant": false,
-                      "legendFormat": "iOS",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_limit_accept_packets_total",
-                      "instant": false,
-                      "legendFormat": "non-iOS",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_reject_packets_total",
-                      "instant": false,
-                      "legendFormat": "REJECT",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "C"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Кумулятивные за период",
-        "id": 15,
-        "links": [],
-        "title": "Абсолютные счётчики",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": [
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "iOS"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "green",
-                        "mode": "fixed"
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {
+                        "Time": true,
+                        "__name__": true,
+                        "instance": true,
+                        "job": true,
+                        "mtpr_synfix_ip_conntrack_state": true,
+                        "server": true
+                      },
+                      "renameByName": {
+                        "ip": "IP",
+                        "state": "State"
                       }
                     }
-                  ]
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "table",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "cellHeight": "sm",
+                "showHeader": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "custom": {
+                    "align": "auto",
+                    "cellOptions": {
+                      "type": "auto"
+                    },
+                    "footer": {
+                      "reducers": []
+                    },
+                    "inspect": false
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-12": {
+        "kind": "Panel",
+        "spec": {
+          "id": 12,
+          "title": "Состояние системы",
+          "description": "Цепочка, SSH bypass, IP",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_chain_exists",
+                        "instant": true,
+                        "legendFormat": "Chain",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
                 },
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "non-iOS"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "orange",
-                        "mode": "fixed"
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_ssh_bypass_active",
+                        "instant": true,
+                        "legendFormat": "SSH Bypass",
+                        "queryType": "instant",
+                        "range": false
                       }
-                    }
-                  ]
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
                 },
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "REJECT"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "red",
-                        "mode": "fixed"
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_active_ips",
+                        "instant": true,
+                        "legendFormat": "Всего IP",
+                        "queryType": "instant",
+                        "range": false
                       }
-                    }
-                  ]
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_non_ios_active_ips",
+                        "instant": true,
+                        "legendFormat": "non-iOS IP",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
                 }
-              ]
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
+              ],
+              "transformations": [],
+              "queryOptions": {}
             }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-16": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_rate_reject_packets",
-                      "instant": true,
-                      "legendFormat": "REJECT/sec",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": false
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
                   },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Красный = атака",
-        "id": 16,
-        "links": [],
-        "title": "REJECT Rate — Alert",
-        "vizConfig": {
-          "group": "stat",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
+                  "color": {
+                    "mode": "thresholds"
+                  }
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 5
-                    },
-                    {
-                      "color": "red",
-                      "value": 20
-                    }
-                  ]
-                },
-                "unit": "pps"
-              },
-              "overrides": []
-            },
-            "options": {
-              "colorMode": "background",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showPercentChange": false,
-              "textMode": "auto",
-              "wideLayout": false
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-17": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_conntrack_established + mtpr_synfix_conntrack_time_wait + mtpr_synfix_conntrack_other",
-                      "instant": true,
-                      "legendFormat": "Total",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "Всего соединений на порту",
-        "id": 17,
-        "links": [],
-        "title": "Conntrack Total",
-        "vizConfig": {
-          "group": "stat",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    },
-                    {
-                      "color": "yellow",
-                      "value": 5000
-                    },
-                    {
-                      "color": "red",
-                      "value": 10000
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "options": {
-              "colorMode": "background",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showPercentChange": false,
-              "textMode": "auto",
-              "wideLayout": false
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-18": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_ios_accept_packets_total",
-                      "instant": true,
-                      "legendFormat": "iOS",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_limit_accept_packets_total",
-                      "instant": true,
-                      "legendFormat": "non-iOS",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": [
-              {
-                "group": "merge",
-                "kind": "Transformation",
-                "spec": {}
-              }
-            ]
-          }
-        },
-        "description": "Соотношение iOS/non-iOS",
-        "id": 18,
-        "links": [],
-        "title": "iOS vs non-iOS — Ratio",
-        "vizConfig": {
-          "group": "piechart",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "short",
                 "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Chain"
+                    },
+                    "properties": [
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "0": {
+                                "color": "red",
+                                "text": "DEAD"
+                              },
+                              "1": {
+                                "color": "green",
+                                "text": "OK"
+                              }
+                            },
+                            "type": "value"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "red",
+                              "value": 0
+                            },
+                            {
+                              "color": "green",
+                              "value": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SSH Bypass"
+                    },
+                    "properties": [
+                      {
+                        "id": "mappings",
+                        "value": [
+                          {
+                            "options": {
+                              "0": {
+                                "color": "green",
+                                "text": "OFF"
+                              },
+                              "1": {
+                                "color": "orange",
+                                "text": "ON"
+                              }
+                            },
+                            "type": "value"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Всего IP"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "blue",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "non-iOS IP"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "green",
+                              "value": 0
+                            },
+                            {
+                              "color": "yellow",
+                              "value": 50
+                            },
+                            {
+                              "color": "red",
+                              "value": 200
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-13": {
+        "kind": "Panel",
+        "spec": {
+          "id": 13,
+          "title": "Bandwidth — байт/сек",
+          "description": "Трафик по категориям (stacked)",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_ios_bytes",
+                        "instant": false,
+                        "legendFormat": "iOS",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_limit_bytes",
+                        "instant": false,
+                        "legendFormat": "non-iOS",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_reject_bytes",
+                        "instant": false,
+                        "legendFormat": "REJECT",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "Bps",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "REJECT"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
                   {
                     "matcher": {
                       "id": "byName",
@@ -1444,843 +745,1714 @@
                     ]
                   }
                 ]
-              },
+              }
+            }
+          }
+        }
+      },
+      "panel-14": {
+        "kind": "Panel",
+        "spec": {
+          "id": 14,
+          "title": "Hashlimit utilization",
+          "description": "Доля non-iOS IP упирающихся в лимит 54/мин",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "clamp_min(mtpr_synfix_rate_reject_packets / (mtpr_synfix_rate_limit_packets + mtpr_synfix_rate_reject_packets), 0)",
+                        "instant": false,
+                        "legendFormat": "Utilization %",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
               "options": {
-                "legend": {
-                  "displayMode": "table",
-                  "placement": "right",
-                  "showLegend": true,
-                  "values": [
-                    "value",
-                    "percent"
-                  ]
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
                 },
-                "pieType": "donut",
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
                 "tooltip": {
+                  "hideZeros": false,
                   "mode": "single",
                   "sort": "none"
                 }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "percentunit",
+                  "min": 0,
+                  "max": 1,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 0.3,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 0.7,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "line+area"
+                    }
+                  }
+                },
+                "overrides": []
               }
             }
           }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-8": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
+        }
+      },
+      "panel-15": {
+        "kind": "Panel",
+        "spec": {
+          "id": 15,
+          "title": "Абсолютные счётчики",
+          "description": "Кумулятивные за период",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_ios_accept_packets_total",
+                        "instant": false,
+                        "legendFormat": "iOS",
+                        "queryType": "range",
+                        "range": true
+                      }
                     },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_conntrack_established",
-                      "instant": false,
-                      "legendFormat": "ESTABLISHED",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_conntrack_time_wait",
-                      "instant": false,
-                      "legendFormat": "TIME_WAIT",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "B"
-                }
-              },
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_conntrack_other",
-                      "instant": false,
-                      "legendFormat": "OTHER",
-                      "queryType": "range",
-                      "range": true
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "C"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": []
-          }
-        },
-        "description": "TCP-сессии по состояниям",
-        "id": 8,
-        "links": [],
-        "title": "Conntrack состояния",
-        "vizConfig": {
-          "group": "timeseries",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
+                    "refId": "A",
+                    "hidden": false
                   }
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": [
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "ESTABLISHED"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "green",
-                        "mode": "fixed"
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_limit_accept_packets_total",
+                        "instant": false,
+                        "legendFormat": "non-iOS",
+                        "queryType": "range",
+                        "range": true
                       }
-                    }
-                  ]
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
                 },
                 {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "TIME_WAIT"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "orange",
-                        "mode": "fixed"
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_reject_packets_total",
+                        "instant": false,
+                        "legendFormat": "REJECT",
+                        "queryType": "range",
+                        "range": true
                       }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "OTHER"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "blue",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            }
-          }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    },
-    "panel-9": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
                     },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "topk(10, mtpr_synfix_ip_conntrack_packets)",
-                      "instant": true,
-                      "legendFormat": "{{ip}}",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": [
-              {
-                "group": "organize",
-                "kind": "Transformation",
-                "spec": {
-                  "options": {
-                    "excludeByName": {
-                      "Time": true,
-                      "__name__": true,
-                      "instance": true,
-                      "job": true,
-                      "server": true
-                    },
-                    "renameByName": {
-                      "ip": "IP",
-                      "Value": "Пакеты"
-                    }
+                    "refId": "C",
+                    "hidden": false
                   }
                 }
-              }
-            ]
-          }
-        },
-        "description": "Топ-10 IP по пакетам (текущий снэпшот).",
-        "id": 9,
-        "links": [],
-        "title": "Топ-10 IP по пакетам",
-        "vizConfig": {
-          "group": "bargauge",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "options": {
-              "displayMode": "gradient",
-              "orientation": "horizontal",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showThresholdLabels": false,
-              "showThresholdMarkers": true,
-              "minVizHeight": 15,
-              "minVizWidth": 15,
-              "namePlacement": "auto",
-              "sizing": "auto"
+              ],
+              "transformations": [],
+              "queryOptions": {}
             }
           },
-          "version": "13.2.0-28013533988"
-        }
-      }
-    },
-    "panel-10": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "topk(10, mtpr_synfix_ip_conntrack_bytes)",
-                      "instant": true,
-                      "legendFormat": "{{ip}}",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
                 }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": [
-              {
-                "group": "organize",
-                "kind": "Transformation",
-                "spec": {
-                  "options": {
-                    "excludeByName": {
-                      "Time": true,
-                      "__name__": true,
-                      "instance": true,
-                      "job": true,
-                      "server": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
                     },
-                    "renameByName": {
-                      "ip": "IP",
-                      "Value": "Байты"
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
                     }
                   }
-                }
-              }
-            ]
-          }
-        },
-        "description": "Топ-10 IP по объёму трафика (текущий снэпшот).",
-        "id": 10,
-        "links": [],
-        "title": "Топ-10 IP по байтам",
-        "vizConfig": {
-          "group": "bargauge",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
                 },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    }
-                  ]
-                },
-                "unit": "decbytes"
-              },
-              "overrides": []
-            },
-            "options": {
-              "displayMode": "gradient",
-              "orientation": "horizontal",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "showThresholdLabels": false,
-              "showThresholdMarkers": true,
-              "minVizHeight": 15,
-              "minVizWidth": 15,
-              "namePlacement": "auto",
-              "sizing": "auto"
-            }
-          },
-          "version": "13.2.0-28013533988"
-        }
-      }
-    },
-    "panel-11": {
-      "kind": "Panel",
-      "spec": {
-        "data": {
-          "kind": "QueryGroup",
-          "spec": {
-            "queries": [
-              {
-                "kind": "PanelQuery",
-                "spec": {
-                  "hidden": false,
-                  "query": {
-                    "datasource": {
-                      "name": "grafanacloud-prom"
-                    },
-                    "group": "prometheus",
-                    "kind": "DataQuery",
-                    "spec": {
-                      "expr": "mtpr_synfix_ip_conntrack_state",
-                      "instant": true,
-                      "legendFormat": "",
-                      "queryType": "instant",
-                      "range": false
-                    },
-                    "version": "v0"
-                  },
-                  "refId": "A"
-                }
-              }
-            ],
-            "queryOptions": {},
-            "transformations": [
-              {
-                "group": "labelsToFields",
-                "kind": "Transformation",
-                "spec": {
-                  "options": {
-                    "mode": "columns"
-                  }
-                }
-              },
-              {
-                "group": "merge",
-                "kind": "Transformation",
-                "spec": {
-                  "options": {}
-                }
-              },
-              {
-                "group": "organize",
-                "kind": "Transformation",
-                "spec": {
-                  "options": {
-                    "excludeByName": {
-                      "Time": true,
-                      "__name__": true,
-                      "instance": true,
-                      "job": true,
-                      "mtpr_synfix_ip_conntrack_state": true,
-                      "server": true
-                    },
-                    "renameByName": {
-                      "ip": "IP",
-                      "state": "State"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "description": "Состояние conntrack по IP",
-        "id": 11,
-        "links": [],
-        "title": "Состояния conntrack по IP",
-        "vizConfig": {
-          "group": "table",
-          "kind": "VizConfig",
-          "spec": {
-            "fieldConfig": {
-              "defaults": {
-                "custom": {
-                  "align": "auto",
-                  "cellOptions": {
-                    "type": "auto"
-                  },
-                  "footer": {
-                    "reducers": []
-                  },
-                  "inspect": false
-                },
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": 0
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                },
-                "unit": "short",
                 "overrides": [
                   {
                     "matcher": {
                       "id": "byName",
-                      "options": "Value"
+                      "options": "iOS"
                     },
                     "properties": [
                       {
-                        "id": "thresholds",
+                        "id": "color",
                         "value": {
-                          "mode": "absolute",
-                          "steps": [
-                            {
-                              "color": "blue",
-                              "value": 0
-                            },
-                            {
-                              "color": "green",
-                              "value": 1
-                            }
-                          ]
+                          "fixedColor": "green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "non-iOS"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "REJECT"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "red",
+                          "mode": "fixed"
                         }
                       }
                     ]
                   }
                 ]
-              },
-              "options": {
-                "cellHeight": "sm",
-                "showHeader": true
               }
             }
           }
-        },
-        "version": "13.2.0-28013533988"
-      }
-    }
-  },
-  "layout": {
-    "kind": "RowsLayout",
-    "spec": {
-      "rows": [
-        {
-          "kind": "RowsLayoutRow",
-          "spec": {
-            "collapse": false,
-            "fillScreen": true,
-            "hideHeader": true,
-            "layout": {
-              "kind": "AutoGridLayout",
-              "spec": {
-                "columnWidthMode": "standard",
-                "items": [
-                  {
-                    "kind": "AutoGridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-12"
+        }
+      },
+      "panel-16": {
+        "kind": "Panel",
+        "spec": {
+          "id": 16,
+          "title": "REJECT Rate — Alert",
+          "description": "Красный = атака",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_reject_packets",
+                        "instant": true,
+                        "legendFormat": "REJECT/sec",
+                        "queryType": "instant",
+                        "range": false
                       }
-                    }
-                  },
-                  {
-                    "kind": "AutoGridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-16"
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": false
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "pps",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 5,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 20,
+                        "color": "red"
                       }
-                    }
+                    ]
                   },
-                  {
-                    "kind": "AutoGridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-17"
-                      }
-                    }
-                  },
-                  {
-                    "kind": "AutoGridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-18"
-                      }
-                    }
+                  "color": {
+                    "mode": "thresholds"
                   }
-                ],
-                "maxColumnCount": 4,
-                "rowHeightMode": "standard"
+                },
+                "overrides": []
               }
-            },
-            "title": "Система и Alert'ы"
-          }
-        },
-        {
-          "kind": "RowsLayoutRow",
-          "spec": {
-            "collapse": false,
-            "fillScreen": true,
-            "hideHeader": false,
-            "layout": {
-              "kind": "GridLayout",
-              "spec": {
-                "items": [
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-5"
-                      },
-                      "height": 8,
-                      "width": 12,
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-13"
-                      },
-                      "height": 8,
-                      "width": 12,
-                      "x": 12,
-                      "y": 0
-                    }
-                  }
-                ]
-              }
-            },
-            "title": "Трафик"
-          }
-        },
-        {
-          "kind": "RowsLayoutRow",
-          "spec": {
-            "collapse": false,
-            "fillScreen": false,
-            "hideHeader": false,
-            "layout": {
-              "kind": "GridLayout",
-              "spec": {
-                "items": [
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-6"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-7"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 8,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-14"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 16,
-                      "y": 0
-                    }
-                  }
-                ]
-              }
-            },
-            "title": "Анализ трафика"
-          }
-        },
-        {
-          "kind": "RowsLayoutRow",
-          "spec": {
-            "collapse": false,
-            "fillScreen": false,
-            "hideHeader": false,
-            "layout": {
-              "kind": "GridLayout",
-              "spec": {
-                "items": [
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-15"
-                      },
-                      "height": 8,
-                      "width": 12,
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-8"
-                      },
-                      "height": 8,
-                      "width": 12,
-                      "x": 12,
-                      "y": 0
-                    }
-                  }
-                ]
-              }
-            },
-            "title": "Счётчики и Conntrack"
-          }
-        },
-        {
-          "kind": "RowsLayoutRow",
-          "spec": {
-            "collapse": false,
-            "fillScreen": false,
-            "hideHeader": false,
-            "layout": {
-              "kind": "GridLayout",
-              "spec": {
-                "items": [
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-9"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 0,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-10"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 8,
-                      "y": 0
-                    }
-                  },
-                  {
-                    "kind": "GridLayoutItem",
-                    "spec": {
-                      "element": {
-                        "kind": "ElementReference",
-                        "name": "panel-11"
-                      },
-                      "height": 8,
-                      "width": 8,
-                      "x": 16,
-                      "y": 0
-                    }
-                  }
-                ]
-              }
-            },
-            "title": "Топ IP"
+            }
           }
         }
-      ]
-    }
-  },
-  "links": [],
-  "liveNow": false,
-  "preload": false,
-  "tags": [],
-  "timeSettings": {
-    "autoRefresh": "",
-    "autoRefreshIntervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30s",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "fiscalYearStartMonth": 0,
-    "from": "now-5m",
-    "hideTimepicker": false,
-    "timezone": "browser",
-    "to": "now"
-  },
-  "title": "MTProto MEKO — SYN Monitor",
-  "variables": []
+      },
+      "panel-17": {
+        "kind": "Panel",
+        "spec": {
+          "id": 17,
+          "title": "Conntrack Total",
+          "description": "Всего соединений на порту",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_conntrack_established + mtpr_synfix_conntrack_time_wait + mtpr_synfix_conntrack_other",
+                        "instant": true,
+                        "legendFormat": "Total",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": false
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 5000,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 10000,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-18": {
+        "kind": "Panel",
+        "spec": {
+          "id": 18,
+          "title": "iOS vs non-iOS — Ratio",
+          "description": "Соотношение iOS/non-iOS",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_ios_accept_packets_total",
+                        "instant": true,
+                        "legendFormat": "iOS",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_limit_accept_packets_total",
+                        "instant": true,
+                        "legendFormat": "non-iOS",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "merge",
+                  "spec": {
+                    "options": null
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "piechart",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "legend": {
+                  "displayMode": "list",
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "pieType": "pie",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "sort": "desc",
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "color": {
+                    "mode": "palette-classic",
+                    "fixedColor": "#73BF69"
+                  },
+                  "custom": {
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-5": {
+        "kind": "Panel",
+        "spec": {
+          "id": 5,
+          "title": "iOS / non-iOS / REJECT — пакеты/с",
+          "description": "SYN скорость по путям",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_ios_packets",
+                        "instant": false,
+                        "legendFormat": "iOS (mark 0x400)",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_limit_packets",
+                        "instant": false,
+                        "legendFormat": "non-iOS (limit)",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_rate_reject_packets",
+                        "instant": false,
+                        "legendFormat": "REJECT",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "pps",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "REJECT"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "iOS (mark 0x400)"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "non-iOS (limit)"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-6": {
+        "kind": "Panel",
+        "spec": {
+          "id": 6,
+          "title": "Доля REJECT от всех SYN",
+          "description": "Рост = атака",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "app": "grafana-assistant-app",
+                        "expr": "clamp_min(mtpr_synfix_rate_reject_packets / (mtpr_synfix_rate_ios_packets + mtpr_synfix_rate_limit_packets + mtpr_synfix_rate_reject_packets), 0)",
+                        "instant": false,
+                        "legendFormat": "REJECT %",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "last",
+                    "max"
+                  ],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "percentunit",
+                  "min": 0,
+                  "max": 1,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 0.1,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 0.3,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "red"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 25,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "line+area"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-7": {
+        "kind": "Panel",
+        "spec": {
+          "id": 7,
+          "title": "Доля non-iOS трафика",
+          "description": "Предрассчитана",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_non_ios_pct",
+                        "instant": false,
+                        "legendFormat": "non-iOS %",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "percent",
+                  "min": 0,
+                  "max": 100,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-8": {
+        "kind": "Panel",
+        "spec": {
+          "id": 8,
+          "title": "Conntrack состояния",
+          "description": "TCP-сессии по состояниям",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_conntrack_established",
+                        "instant": false,
+                        "legendFormat": "ESTABLISHED",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_conntrack_time_wait",
+                        "instant": false,
+                        "legendFormat": "TIME_WAIT",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "mtpr_synfix_conntrack_other",
+                        "instant": false,
+                        "legendFormat": "OTHER",
+                        "queryType": "range",
+                        "range": true
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 10,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "ESTABLISHED"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "TIME_WAIT"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "OTHER"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "blue",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "panel-9": {
+        "kind": "Panel",
+        "spec": {
+          "id": 9,
+          "title": "Топ-10 IP по пакетам",
+          "description": "Топ-10 IP по пакетам (текущий снэпшот).",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "prometheus",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "grafanacloud-prom"
+                      },
+                      "spec": {
+                        "expr": "topk(10, mtpr_synfix_ip_conntrack_packets)",
+                        "instant": true,
+                        "legendFormat": "{{ip}}",
+                        "queryType": "instant",
+                        "range": false
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "organize",
+                  "spec": {
+                    "options": {
+                      "excludeByName": {
+                        "Time": true,
+                        "__name__": true,
+                        "instance": true,
+                        "job": true,
+                        "server": true
+                      },
+                      "renameByName": {
+                        "Value": "Пакеты",
+                        "ip": "IP"
+                      }
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "bargauge",
+            "version": "13.2.0-28013533988",
+            "spec": {
+              "options": {
+                "displayMode": "basic",
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "overflow": "ellipsis",
+                  "placement": "bottom",
+                  "showLegend": false
+                },
+                "maxVizHeight": 300,
+                "minVizHeight": 15,
+                "minVizWidth": 15,
+                "namePlacement": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": true,
+                "showThresholdMarkers": true,
+                "showUnfilled": true,
+                "sizing": "auto",
+                "valueMode": "color"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "unit": "short",
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 1000,
+                        "color": "yellow"
+                      },
+                      {
+                        "value": 10000,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "RowsLayout",
+      "spec": {
+        "rows": [
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "Система и Alert'ы",
+              "collapse": false,
+              "hideHeader": true,
+              "fillScreen": true,
+              "layout": {
+                "kind": "AutoGridLayout",
+                "spec": {
+                  "maxColumnCount": 4,
+                  "columnWidthMode": "standard",
+                  "rowHeightMode": "standard",
+                  "items": [
+                    {
+                      "kind": "AutoGridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-12"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "AutoGridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-16"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "AutoGridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-17"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "AutoGridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-18"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "Трафик",
+              "collapse": false,
+              "hideHeader": false,
+              "fillScreen": true,
+              "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                  "items": [
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 12,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-5"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 12,
+                        "y": 0,
+                        "width": 12,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-13"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "Анализ трафика",
+              "collapse": false,
+              "hideHeader": false,
+              "fillScreen": false,
+              "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                  "items": [
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-6"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 8,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-7"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 16,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-14"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "Счётчики и Conntrack",
+              "collapse": false,
+              "hideHeader": false,
+              "fillScreen": false,
+              "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                  "items": [
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 12,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-15"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 12,
+                        "y": 0,
+                        "width": 12,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-8"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "kind": "RowsLayoutRow",
+            "spec": {
+              "title": "Топ IP",
+              "collapse": false,
+              "hideHeader": false,
+              "fillScreen": false,
+              "layout": {
+                "kind": "GridLayout",
+                "spec": {
+                  "items": [
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 8,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-10"
+                        }
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "x": 16,
+                        "y": 0,
+                        "width": 8,
+                        "height": 8,
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-11"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": [],
+    "timeSettings": {
+      "timezone": "browser",
+      "from": "now-5m",
+      "to": "now",
+      "autoRefresh": "auto",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30s",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "MTProto MEKO — SYN Monitor",
+    "variables": []
+  }
 }
