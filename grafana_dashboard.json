@@ -1673,10 +1673,10 @@
                     "kind": "DataQuery",
                     "spec": {
                       "expr": "topk(10, mtpr_synfix_ip_conntrack_packets)",
-                      "instant": false,
+                      "instant": true,
                       "legendFormat": "{{ip}}",
-                      "queryType": "range",
-                      "range": true
+                      "queryType": "instant",
+                      "range": false
                     },
                     "version": "v0"
                   },
@@ -1685,42 +1685,41 @@
               }
             ],
             "queryOptions": {},
-            "transformations": []
+            "transformations": [
+              {
+                "group": "organize",
+                "kind": "Transformation",
+                "spec": {
+                  "options": {
+                    "excludeByName": {
+                      "Time": true,
+                      "__name__": true,
+                      "instance": true,
+                      "job": true,
+                      "server": true
+                    },
+                    "renameByName": {
+                      "ip": "IP",
+                      "Value": "Пакеты"
+                    }
+                  }
+                }
+              }
+            ]
           }
         },
-        "description": "conntrack пакеты",
+        "description": "Топ-10 IP по пакетам (текущий снэпшот).",
         "id": 9,
         "links": [],
         "title": "Топ-10 IP по пакетам",
         "vizConfig": {
-          "group": "timeseries",
+          "group": "bargauge",
           "kind": "VizConfig",
           "spec": {
             "fieldConfig": {
               "defaults": {
                 "color": {
                   "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
                 },
                 "thresholds": {
                   "mode": "absolute",
@@ -1736,19 +1735,25 @@
               "overrides": []
             },
             "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
+              "displayMode": "gradient",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
               },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "minVizHeight": 15,
+              "minVizWidth": 15,
+              "namePlacement": "auto",
+              "sizing": "auto"
             }
-          }
-        },
-        "version": "13.2.0-28013533988"
+          },
+          "version": "13.2.0-28013533988"
+        }
       }
     },
     "panel-10": {
@@ -1770,10 +1775,10 @@
                     "kind": "DataQuery",
                     "spec": {
                       "expr": "topk(10, mtpr_synfix_ip_conntrack_bytes)",
-                      "instant": false,
+                      "instant": true,
                       "legendFormat": "{{ip}}",
-                      "queryType": "range",
-                      "range": true
+                      "queryType": "instant",
+                      "range": false
                     },
                     "version": "v0"
                   },
@@ -1782,42 +1787,41 @@
               }
             ],
             "queryOptions": {},
-            "transformations": []
+            "transformations": [
+              {
+                "group": "organize",
+                "kind": "Transformation",
+                "spec": {
+                  "options": {
+                    "excludeByName": {
+                      "Time": true,
+                      "__name__": true,
+                      "instance": true,
+                      "job": true,
+                      "server": true
+                    },
+                    "renameByName": {
+                      "ip": "IP",
+                      "Value": "Байты"
+                    }
+                  }
+                }
+              }
+            ]
           }
         },
-        "description": "conntrack трафик",
+        "description": "Топ-10 IP по объёму трафика (текущий снэпшот).",
         "id": 10,
         "links": [],
         "title": "Топ-10 IP по байтам",
         "vizConfig": {
-          "group": "timeseries",
+          "group": "bargauge",
           "kind": "VizConfig",
           "spec": {
             "fieldConfig": {
               "defaults": {
                 "color": {
                   "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisPlacement": "auto",
-                  "drawStyle": "line",
-                  "fillOpacity": 10,
-                  "gradientMode": "none",
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "showPoints": "auto",
-                  "showValues": false,
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
                 },
                 "thresholds": {
                   "mode": "absolute",
@@ -1828,24 +1832,30 @@
                     }
                   ]
                 },
-                "unit": "Bps"
+                "unit": "decbytes"
               },
               "overrides": []
             },
             "options": {
-              "legend": {
-                "displayMode": "list",
-                "placement": "bottom",
-                "showLegend": true
+              "displayMode": "gradient",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
               },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "minVizHeight": 15,
+              "minVizWidth": 15,
+              "namePlacement": "auto",
+              "sizing": "auto"
             }
-          }
-        },
-        "version": "13.2.0-28013533988"
+          },
+          "version": "13.2.0-28013533988"
+        }
       }
     },
     "panel-11": {
